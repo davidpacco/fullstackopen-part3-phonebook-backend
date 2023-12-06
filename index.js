@@ -30,6 +30,7 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' })
 }
 
+// eslint-disable-next-line no-unused-vars
 morgan.token('person-obj', (req, res) => {
   if (req.method === 'POST') return JSON.stringify(req.body)
   else return ' '
@@ -63,6 +64,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
+    // eslint-disable-next-line no-unused-vars
     .then(result => res.status(204).end())
     .catch(error => next(error))
 })
