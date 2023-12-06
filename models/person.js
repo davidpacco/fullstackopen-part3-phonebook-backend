@@ -16,7 +16,7 @@ const personSchema = mongoose.Schema({
   number: {
     type: String,
     validate: {
-      validator: (v) => /(?:\d{2}-\d{7})|(?:\d{3}-\d{8})/.test(v)
+      validator: (v) => /\b(?:\d{2}-\d{7})|(?:\d{3}-\d{8})\b/.test(v)
     },
     required: [true, 'number is required']
   }
