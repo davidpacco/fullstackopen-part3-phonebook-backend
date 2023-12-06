@@ -8,8 +8,18 @@ console.log('connecting to MongoDB')
 mongoose.connect(url)
 
 const personSchema = mongoose.Schema({
-  name: String,
-  number: String
+  name: {
+    type: String,
+    minLength: 4,
+    required: [true, 'name is required']
+  },
+  number: {
+    type: String,
+    validate: {
+      validator: (v) => /(?:\d{2}-\d{7})|(?:\d{3}-\d{8})/.test(v)
+    },
+    required: [true, 'number is required']
+  }
 })
 
 personSchema.set('toJSON', {
